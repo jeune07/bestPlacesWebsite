@@ -8,7 +8,7 @@ import App from "../../App";
 
 //setCoordinates, setBounds,coordinates
 
-const Map =(props) => {
+const Map =({coordinates, setCoordinates,setBounds}) => {
 
     const classes=useStyles()
     const isMobile =useMediaQuery("(min-width:600px)")
@@ -18,14 +18,14 @@ const Map =(props) => {
         <div className={classes.mapContainer}>
             <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyA2W96_nbGTUqVQou7S9i0ACSt_i7LR7fo" }}
-            defaultCenter={props.coordinates}
-            center={props.coordinates}
+            defaultCenter={coordinates}
+            center={coordinates}
             defaultZoom={14}
             margin={[50,50,50,50]}
             options={""}
             onChange={(e)=>{
-            console.log(props.coordinates)
-            props.setCoordinates({lat: e.center.lat, lng:e.center.lng})
+            setCoordinates({lat: e.center.lat, lng:e.center.lng})
+            setBounds({ne: e.marginBounds.ne, sw: e.marginBounds.sw})
             }}
             onChildClick={()=>{}}
             >
