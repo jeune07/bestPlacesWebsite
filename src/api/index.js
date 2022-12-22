@@ -1,26 +1,31 @@
 import axios from "axios";
+import { useEffect } from "react";
 
 const URL ="https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary"
-
-const options = {
-   params: {
-    bl_latitude: '11.847676',
-    tr_latitude: '12.838442',
-    bl_longitude: '109.095887',
-    tr_longitude: '109.149359',   
-  },
-  headers: {
-    'X-RapidAPI-Key': '71d6edd73dmsh2164cabaa11651ap1db506jsn115a11de1249',
-    'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-  }
-};
-
-export const getPlacesData =async ()=>{
+export const getPlacesData =async (sw, ne)=>{
 
   try{
-    const {data:{data}} = await axios.get(URL,options)
-    return data
+    const {data:{data}} = await axios.get(URL,{
+      
+      params: {
+       bl_latitude: sw.lat,
+       tr_latitude:ne.lat,
+       bl_longitude:sw.lng,
+       tr_longitude:ne.lng,   
+     },
+     headers: {
+       'X-RapidAPI-Key': 'd42dd2f99cmsh2e55e0949b8026fp18d4d6jsna0b0de922907',
+       'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+     }
+     
+   }) 
+   return data
+  
+  
+ 
+   
   }catch(error){
-    console.log(error)
+    console.log("  Hey algo anda mal aqui  puedes revisarlo  "+ error)
   }
+  
 }

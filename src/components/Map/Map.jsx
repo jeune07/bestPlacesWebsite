@@ -8,8 +8,8 @@ import App from "../../App";
 
 //setCoordinates, setBounds,coordinates
 
-const Map =({coordinates, setCoordinates,setBounds}) => {
-
+const Map =({setCoordinates,setBounds, coordinates, bounds}) => {
+   
     const classes=useStyles()
     const isMobile =useMediaQuery("(min-width:600px)")
 
@@ -24,8 +24,9 @@ const Map =({coordinates, setCoordinates,setBounds}) => {
             margin={[50,50,50,50]}
             options={""}
             onChange={(e)=>{
-            setCoordinates({lat: e.center.lat, lng:e.center.lng})
+            setCoordinates({ lat: e.center.lat, lng: e.center.lng })
             setBounds({ne: e.marginBounds.ne, sw: e.marginBounds.sw})
+           
             }}
             onChildClick={()=>{}}
             >
